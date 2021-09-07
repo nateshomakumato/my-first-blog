@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+    {% include 'header.html' %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+	<h2 style="text-align: center">Results Found!</h2> <br /> <br />
+		{% for post in queryset %}
+    			<h5 style="text-align: center" > <a class="text-success" href="{{ post.get_absolute_url }} ">{{ post.title }}</a> </h5>
+  		  	<br />
+  		  {% empty %}
+    			<h5 style="text-align: center" class="text-danger"> Sorry, No Result Found!</a> </h5>
+		{% endfor %}
+		
+
+    {% include 'scripts.html' %}
+
+</body>
+
+</html>

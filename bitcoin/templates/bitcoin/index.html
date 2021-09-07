@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+    {% include 'header.html' %}
+
+<!--
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+-->
+<br /> <br />
+<h2 style="text-align: center">CRYPTO MARKET</h2> <br /> <br />   
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">COIN</th>
+      <th scope="col">NAME</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">24H HIGH</th>
+      <th scope="col">24H LOW</th>
+      <th scope="col">MARKET CAP</th>
+    </tr>
+  </thead>
+  <tbody>
+ {% for key, value in price.DISPLAY.items %}
+ 
+    <tr>
+       <td> <img width="50" height="50" src="https://www.cryptocompare.com/{{ value.INR.IMAGEURL }}" > </td>
+      <td>{{ key }}</td>
+      <td>{{ value.INR.PRICE }}</td>
+      <td>{{ value.INR.HIGHDAY }}</td>
+      <td>{{ value.INR.LOWDAY }}</td>
+      <td>{{ value.INR.MKTCAP }}</td>
+    </tr>
+   {% endfor %}
+ 
+<script>
+
+setInterval(function() {
+		//window.location.reload();
+   		let xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://127.0.0.1:8000/", true);
+		xhr.send();
+},10000);
+
+</script>
+   
+{% include 'scripts.html' %}
+
+</body>
+
+</html>
